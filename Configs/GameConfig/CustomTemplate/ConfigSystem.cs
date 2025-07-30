@@ -1,5 +1,4 @@
 using Luban;
-using GameBase;
 using GameConfig;
 using TEngine;
 using UnityEngine;
@@ -7,8 +6,12 @@ using UnityEngine;
 /// <summary>
 /// 配置加载器。
 /// </summary>
-public class ConfigSystem : Singleton<ConfigSystem>
+public class ConfigSystem
 {
+    private static ConfigSystem _instance;
+
+    public static ConfigSystem Instance => _instance ??= new ConfigSystem();
+
     private bool _init = false;
 
     private Tables _tables;
@@ -25,6 +28,8 @@ public class ConfigSystem : Singleton<ConfigSystem>
             return _tables;
         }
     }
+    
+    private IResourceModule _resourceModule;
 
     /// <summary>
     /// 加载配置。
@@ -42,16 +47,12 @@ public class ConfigSystem : Singleton<ConfigSystem>
     /// <returns>ByteBuf</returns>
     private ByteBuf LoadByteBuf(string file)
     {
-        TextAsset textAsset = null;
-        textAsset = GameModule.Resource.GetPreLoadAsset<TextAsset>(file);
-        if (textAsset != null)
+        if (_resourceModule == null)
         {
-            return new ByteBuf(textAsset.bytes);
+            _resourceModule = ModuleSystem.GetModule<IResourceModule>();
         }
-        else
-        {
-            textAsset = GameModule.Resource.LoadAsset<TextAsset>(file);
-            return new ByteBuf(textAsset.bytes);
-        }
+        TextAsset textAsset = _resourceModule.LoadAsset<TextAsset>(file);
+        byte[] bytes = textAsset.bytes;
+        return new ByteBuf(bytes);
     }
 }

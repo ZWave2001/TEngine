@@ -14,7 +14,7 @@ namespace TEngine
         {
             public object InterfaceWrap;
         };
-        
+
         /// <summary>
         /// 总事件实体数据。
         /// </summary>
@@ -32,6 +32,7 @@ namespace TEngine
             {
                 return (T)entry.InterfaceWrap;
             }
+
             return default(T);
         }
 
@@ -50,25 +51,40 @@ namespace TEngine
                 _eventEntryMap.Add(typeName, entry);
             }
         }
-        
+
         /// <summary>
         /// 注册wrap的函数。
         /// </summary>
         /// <param name="typeName">类型名称。</param>
         /// <param name="callerWrap">调用接口名。</param>
-        public void RegWrapInterface(string typeName,object callerWrap)
+        public void RegWrapInterface(string typeName, object callerWrap)
         {
             var entry = new EventEntryData();
             entry.InterfaceWrap = callerWrap;
             if (typeName != null)
             {
-                _eventEntryMap.Add(typeName, entry);
+                _eventEntryMap[typeName] = entry;
             }
         }
 
         /// <summary>
         /// 分发注册器。
         /// </summary>
-        public EventDispatcher Dispatcher { get; } = new EventDispatcher();
+        public EventDispatcher Dispatcher { get; private set; } = new EventDispatcher();
+
+        
+        public EventDispatcher GetDispatcher()
+        {
+            return Dispatcher;
+        }
+        
+        /// <summary>
+        /// 清除事件。
+        /// </summary>
+        public void Init()
+        {
+            _eventEntryMap.Clear();
+            Dispatcher.ClearEventTable();
+        }
     }
 }

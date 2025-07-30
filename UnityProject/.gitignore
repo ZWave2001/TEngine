@@ -1,5 +1,7 @@
-# UnityProject
-
+# This .gitignore file should be placed at the root of your Unity project directory
+#
+# Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
+#
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -7,11 +9,8 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
-/EditorBuild/
 /[Aa]ssets/StreamingAssets
 /[Aa]ssets/StreamingAssets.meta
-/BuildBundleInfo/
-
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
@@ -44,6 +43,7 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.idea
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -55,6 +55,7 @@ sysinfo.txt
 
 # Builds
 *.apk
+*.unitypackage
 
 # Crashlytics generated file
 crashlytics-build.properties
@@ -65,13 +66,16 @@ crashlytics-build.properties
 [Aa]ssets/HybridCLRGenerate/
 [Aa]ssets/HybridCLRGenerate.meta
 
+
 #AATemp
 [Aa]ssets/AATemp/
 [Aa]ssets/AATemp.meta
 
-# Custom AATest
-[Aa]ssets/AATest/
-[Aa]ssets/AATest.meta
+[Aa]ssets/StreamingAssets/
+[Aa]ssets/StreamingAssets.meta
+
+#Rider
+/.idea/
 
 #Bundles
 Bundles/
@@ -79,6 +83,7 @@ Bundles/
 #Sandbox
 Sandbox/
 
+package/
 #MAC
 .DS_Store
 
@@ -90,6 +95,7 @@ Sandbox/
 # [Aa]ssets/Plugins/Sirenix.meta
 
 #YooAssets
+package/
 yoo/
 [Aa]ssets/TEngine/AssetSetting/Resources/BuiltinFileManifest.asset
 [Aa]ssets/TEngine/AssetSetting/Resources/BuiltinFileManifest.asset.meta

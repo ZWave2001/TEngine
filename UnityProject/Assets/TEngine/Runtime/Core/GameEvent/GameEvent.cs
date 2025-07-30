@@ -5,14 +5,18 @@ namespace TEngine
     /// <summary>
     /// 游戏全局事件类。
     /// </summary>
-    public static class GameEvent
+    public class GameEvent
     {
         /// <summary>
         /// 全局事件管理器。
         /// </summary>
         private static readonly EventMgr _eventMgr = new EventMgr();
 
+        /// <summary>
+        /// 全局事件管理器。
+        /// </summary>
         public static EventMgr EventMgr => _eventMgr;
+
         #region 细分的注册接口
 
         /// <summary>
@@ -95,7 +99,7 @@ namespace TEngine
         {
             return _eventMgr.Dispatcher.AddEventListener(eventType, handler);
         }
-        
+
         /// <summary>
         /// 增加事件监听。
         /// </summary>
@@ -531,7 +535,7 @@ namespace TEngine
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         public static void Send<TArg1, TArg2, TArg3, TArg4>(string eventType, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
         {
-            _eventMgr.Dispatcher.Send(RuntimeId.ToRuntimeId(eventType), arg1, arg2, arg3);
+            _eventMgr.Dispatcher.Send(RuntimeId.ToRuntimeId(eventType), arg1, arg2, arg3, arg4);
         }
 
         /// <summary>
@@ -552,7 +556,7 @@ namespace TEngine
         {
             _eventMgr.Dispatcher.Send(RuntimeId.ToRuntimeId(eventType), arg1, arg2, arg3, arg4, arg5);
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -585,5 +589,13 @@ namespace TEngine
         }
 
         #endregion
+
+        /// <summary>
+        /// 清除事件。
+        /// </summary>
+        public static void Shutdown()
+        {
+            _eventMgr.Init();
+        }
     }
 }

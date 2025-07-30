@@ -7,13 +7,13 @@ namespace TEngine.Editor
     /// </summary>
     public class ProfilerDefineSymbols
     {
-        private const string EnableFirstProfiler = "FIRST_PROFILER";
-        private const string EnableDinProFiler = "T_PROFILER";
+        private const string ENABLE_FIRST_PROFILER = "FIRST_PROFILER";
+        private const string ENABLE_DIN_PROFILER = "T_PROFILER";
         
         private static readonly string[] AllProfilerDefineSymbols = new string[]
         {
-            EnableFirstProfiler,
-            EnableDinProFiler,
+            ENABLE_FIRST_PROFILER,
+            ENABLE_DIN_PROFILER,
         };
         
         /// <summary>
